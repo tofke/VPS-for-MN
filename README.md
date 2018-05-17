@@ -27,12 +27,16 @@ sudo apt install libssl1.0.0 libboost-system1.58.0 libboost-program-options1.58.
 sudo apt install libzmq5 libboost-filesystem1.58.0 libboost-program-options1.58.0 libdb4.8++ libminiupnpc10
 ```
 ### optionnal (but recommended) :
-1) Add some components used by most of the masternode software (unless you compile yourself)
+1) Add some components used by most of the masternode software (unless you compile yourself, then you probably know what you do and won't need this documentation). Always refer to the dev team install notice when possible for needed dependencies.
 ```
-sudo apt install libminiupnpc10 (firewall-jumping support)
-sudo apt install libdb4.8 (needed if wallet enabled)
-sudo apt install qt protobuf libqrencode (needed if gui enabled)
+sudo apt install libminiupnpc10 
+sudo apt install libdb4.8 
+sudo apt install qt protobuf libqrencode 
 ```
+* libminiupnpc10 : firewall-jumping support
+* libdb4.8 : needed if wallet enabled
+* qt protobuf libqrencode : needed if gui enabled
+
 2) Add some swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
 ```
 sudo fallocate -l 4G /swapfile
