@@ -24,7 +24,7 @@ vi /etc/ssh/sshd_config
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt update && sudo apt upgrade
-sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev
+sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
 sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq5 libminiupnpc10
 ```
 ### optionnal (but recommended) :
