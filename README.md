@@ -19,23 +19,18 @@ vi /etc/ssh/sshd_config
 => change "PermitRootLogin" to "no"
 
 ## install dependencies : 
+1) Add some components used by most of the masternode software (unless you compile yourself, then you probably know what you do and won't need this documentation). Always refer to the dev team install notice when possible for needed dependencies.
 ```
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt update && sudo apt upgrade
-sudo apt install libssl1.0.0 libboost-system1.58.0 libboost-program-options1.58.0 libboost-thread1.58.0 libboost-chrono1.58.0 libdb4.8++
-sudo apt install libzmq5 libboost-filesystem1.58.0 libboost-program-options1.58.0 libdb4.8++ libminiupnpc10
+sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libzmq5 libminiupnpc10
 ```
 ### optionnal (but recommended) :
-1) Add some components used by most of the masternode software (unless you compile yourself, then you probably know what you do and won't need this documentation). Always refer to the dev team install notice when possible for needed dependencies.
+To enable building of the QT graphacal user interfaces.
 ```
-sudo apt install libminiupnpc10 
-sudo apt install libdb4.8 
 sudo apt install qt protobuf libqrencode 
 ```
-* libminiupnpc10 : firewall-jumping support
-* libdb4.8 : needed if wallet enabled
-* qt protobuf libqrencode : needed if gui enabled
 
 2) Add some swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
 ```
@@ -43,7 +38,8 @@ sudo fallocate -l 4G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-sudo echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
+sudo su -
+echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 ```
 Depending on your needs, you could add more or less swap : 4G stands for 4 GigaBytes, so if for example you just want a 2 Gb swapfile you would have typed "fallocate -l 2G /swapfile" instead.
 
