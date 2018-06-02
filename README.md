@@ -65,11 +65,12 @@ vm.swappiness = 10
 
 3) Add some more tools to ease administration : 
 ```
-sudo apt install htop glances byobu -y
+sudo apt install htop glances byobu jq -y
 ```
 * htop : a better top with easy viewable ressource usage
 * glances : an even better tool to view ressources "at a glance" (hence the name, comes from HP-UX 'glance' tool)
 * byobu : a better 'screen' (a terminal multiplexer, wich allow to keep a detached session in backgroud or share your screen with multiple sessions)
+* jq : jq is like sed for JSON data (a usefull tool to parse JSON data)
 
 ### Tools for Windows (for remote administration of your VPS)
 * MobaXterm : the best Xwindows / SSH client (and much more) i know for Windows : https://mobaxterm.mobatek.net/download.html
