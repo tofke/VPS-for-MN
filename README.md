@@ -27,6 +27,10 @@ sudo apt update && sudo apt upgrade
 sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
 sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq5 libminiupnpc10
 ```
+#### NOTE : for old Ubuntu 14.04, replace the last line with : 
+```
+sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq3 libminiupnpc8
+```
 ### optionnal (but recommended) :
 To enable building of the QT graphacal user interfaces.
 ```
