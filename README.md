@@ -1,6 +1,14 @@
 # VPS-for-MN
 Virtual Private Server setup for hosting "Dash/PIVX like" Master Nodes
 
+An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :
+* a high number of datacenters to span your nodes accros the globe
+* a high number of preinstalled images for most operating systems
+* the possibility to upload your own ISO images 
+* the possibility to pay with BTC or BCH
+* making snapshots, backups, add storage 
+* and many more ... 
+
 ## secure access :
 1) create a user : 
 ```
