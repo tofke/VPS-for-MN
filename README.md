@@ -5,7 +5,7 @@ This step by step tuto is primarly focusing on Debian/Ubuntu systems for now.
 
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
-1) The first step is to get yourself a decent server
+### 1) The first step is to get yourself a decent server
 An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :
 * a high number of datacenters to span your nodes accros the globe
 * a high number of preinstalled images for most operating systems
@@ -14,9 +14,9 @@ An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">
 * the possibility to pay with BTC or BCH
 * and many more ... 
 
-2) When you connect to your freshly deployed server, you should update the basic OS ! 
+### 2) When you connect to your freshly deployed server, you should update the basic OS ! 
 
-Most preinstalled operating systems are prebuild images wich are probably not running the latest versions of siftawre packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
+Most preinstalled operating systems are prebuild images wich are probably not running the latest versions of software packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
 ```
 apt-get update && apt-get upgrade -y
 ```
@@ -29,26 +29,30 @@ reboot
 ## Secure access to your server :
 A lot of masternode "experts" will tell you in their documentation to install and run their stuff as root ... i <ai>STRONGELY</ai> discourage you to do so ! You should take a little more precautions with your server and create a dedicated user for each task. For example, i am running +10 masternodes on a single VPS (2 Gb of RAM and 2 CPU treads). No need to "destroy the server and redo a full installation" for a simple blockchain syncronisation problem ... if they know what they do, they should not just give you such dummy advises. This sounds so unprofessional to me ... needless to say i don't listen to such advices as i run many masternodes on a single VPS ... but well you do what you want, if it is easyer for you to just run an installation script. I suggest to learn basics of Linux administration however to understand what commands you type in ...
 
-3) Create a user : 
+### 3) Create a user : 
 ```
 useradd -m -s /bin/bash username
 ```
-4) Add this new user in the "sudo" group : 
+Of course, in the line above you replace "<i>username</i>" with whatever you want, like "admin", "operator", "god", "me" ... 
+
+### 4) Add this new user in the "sudo" group : 
 This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
 ```
 usermod -g username -G sudo username
 ```
-Of course, in the line above you replace "username" with whatever you want, like "admin", "operator", "god", "me" ... 
+Again, in the line above you replace "<i>username</i>" with the name you just created previouly.
+
 Once this new user is created, set a password for him with the passwd command : 
 ```
 passwd username
 ```
-Again, in the line above you replace "username" with the name you just created previouly. This command will ask you to enter the new password twice (don't worry if you see no stars or dots or whatever in the prompt as you type a password, this is normal behaviour or this command on Unix systems).
+Again, in the line above you replace "<i>username</i>" with the name you just created previouly. This command will ask you to enter the new password twice (don't worry if you see no stars or dots or whatever in the prompt as you type a password, this is normal behaviour or this command on Unix systems).
 
-5) check connection with that user (connect with ssh from wherever you want)
+### 5) check connection with that user (connect with ssh from wherever you want)
 An even more secure option would be to enable remote connections with an ssh key ... i'll explain that later when i'll have more time to update this documentation. Basically, on a MAC or Linux at home (not on a public computer, do this only on your own), create a keypair with "ssh-keygen" and then install it to the remote user's home folder with "ssh-copy-id user@remotehost" ... same syntax as an ssh connection : "ssh user@host". I recommend using MobaXterm for Windows users, as this software let's you keep your settings if you enable a local persistent home (this will be documented here too one day).
 
-6) Optionally (recommended), if the connexion with your new user works, then disable remote root login :
+### 6) Optionally (recommended), disable remote root login :
+Do this only if the connexion with your new user works ! 
 ```
 vi /etc/ssh/sshd_config
 ```
