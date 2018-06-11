@@ -6,7 +6,8 @@ This step by step tuto is primarly focusing on Debian/Ubuntu systems for now.
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
 ### 1) The first step is to get yourself a decent server
-An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :
+An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :<br>
+<a href="https://www.vultr.com/?ref=7442428"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
 * a high number of datacenters to span your nodes accros the globe
 * a high number of preinstalled images for most operating systems
 * the possibility to upload your own ISO images 
@@ -56,7 +57,8 @@ Do this only if the connexion with your new user works !
 ```
 vi /etc/ssh/sshd_config
 ```
-=> change "PermitRootLogin" to "no"
+--> change "PermitRootLogin" to "no"
+(you can use nano instead of vi if you prefer)
 
 ## install dependencies for bitcoin : 
 (All coins out there are forks of the original Bitcoin Core software stack)
@@ -97,17 +99,29 @@ echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 ```
 
 3) Tell Linux kernel not to swap unless necessary, for example in case of RAM shortage under 10% :  
-Check current settings with "sysctl -a|grep swappiness", and if needed change it :
+Check current settings with "sysctl -a|grep swappiness", and if needed change it (as root) :
 ```
-sudo vi /etc/sysctl.conf
+sysctl -a|grep swappiness
 ```
---> add "vm.swappiness=10" at the end of the file, and run this comand : 
+For example, you could have this kind of output : 
+(this is an example, don't paste these lines)
 ```
-sudo sysctl -p
+root@mine:~# sysctl -a|grep swappiness
+sysctl: lecture de la clé « net.ipv6.conf.all.stable_secret »
+sysctl: lecture de la clé « net.ipv6.conf.default.stable_secret »
+sysctl: lecture de la clé « net.ipv6.conf.enp4s0.stable_secret »
+sysctl: lecture de la clé « net.ipv6.conf.lo.stable_secret »
+vm.swappiness = 60
+```
+(ignore the other messages beginning with "sysctl:" here)
+--> let's change that in "/etc/sysctl.conf" to "vm.swappiness=10", and run "sysctl -p" to reload : 
+```
+echo "vm.swappiness=10" >> /etc/sysctl.conf && sysctl -p
 ```
 This last command should answer with the changed parameter, for example : 
+(again, this is just an example, don't paste "root@mine:#" in your shell)
 ```
-root@mn1:~# sysctl -p
+root@mine:~# echo "vm.swappiness=10" >> /etc/sysctl.conf && sysctl -p
 vm.swappiness = 10
 ```
 
@@ -115,6 +129,7 @@ vm.swappiness = 10
 ```
 sudo apt install htop glances byobu jq -y
 ```
+(did you notice i use sudo again : connect as root only when needed)
 * htop : a better top with easy viewable ressource usage
 * glances : an even better tool to view ressources "at a glance" (hence the name, comes from HP-UX 'glance' tool)
 * byobu : a better 'screen' (a terminal multiplexer, wich allow to keep a detached session in backgroud or share your screen with multiple sessions)
