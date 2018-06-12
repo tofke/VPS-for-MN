@@ -5,7 +5,7 @@ This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
 
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
-## 1) The first step is to get yourself a decent server
+## 1. The first step is to get yourself a decent server
 An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :<br>
 <a href="https://www.vultr.com/?ref=7442428"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
 * a high number of datacenters to span your nodes accros the globe
@@ -15,7 +15,7 @@ An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">
 * the possibility to pay with BTC or BCH
 * and many more ... 
 
-## 2) When you connect to your new server, you should update the basic OS ! 
+## 2. When you connect to your new server, you should update the basic OS ! 
 Most freshly deployed preinstalled operating systems are prebuild images wich are probably not running the latest versions of software packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
 ```
 apt-get update && apt-get upgrade -y
@@ -26,16 +26,16 @@ As the root user, just type "<b>reboot</b>", and you will be disconnected. Reboo
 reboot
 ```
 
-## 3) Secure access to your server :
+## 3. Secure access to your server :
 Some masternode "experts" will tell you in their documentation or Discord channel to install and run their stuff as root ... i <ai>STRONGELY</ai> discourage you to do so ! You should take a bit more precautions with your server and create a dedicated user for each task. For example, i am running +10 masternodes on a single VPS (2 Gb of RAM and 2 CPU treads). No need to "destroy the server and redo a full installation" for a simple blockchain syncronisation problem ! If they knew what the're doing, they should not just give you such dummy advises. This sounds so unprofessional to me ... needless to say i don't listen to such advices as i run many masternodes on a single VPS ... but well you do what you want, if it is easyer for you to just run an installation script. I suggest to learn basics of Linux administration however to understand what commands you type in !
 
-### 1) Create a user : 
+### 3.1 Create a user : 
 ```
 useradd -m -s /bin/bash username
 ```
 Of course, in the line above you replace "<i>username</i>" with whatever you want, like "admin", "operator", "god", "me" ... 
 
-### 2) Add this new user in the "sudo" group : 
+### 3.2 Add this new user in the "sudo" group : 
 
 This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
 ```
@@ -43,7 +43,7 @@ usermod -a -G sudo username
 ```
 Again, in the line above you replace "<i>username</i>" with the name you just created previouly.
 
-### 3) Once this new user is created, set a password for him with the passwd command : 
+### 3.3 Once this new user is created, set a password for him with the passwd command : 
 ```
 passwd username
 ```
@@ -60,11 +60,11 @@ tof : tof sudo
 ```
 As you can see, nothing apears after the "password:" prompts.
 
-### 4) check connection with that user (connect with ssh from wherever you want)
+### 3.4 check connection with that user (connect with ssh from wherever you want)
 
 An even more secure option would be to enable remote connections with an ssh key ... i'll explain that later when i'll have more time to update this documentation. Basically, on a MAC or Linux at home (not on a public computer, do this only on your own), create a keypair with "ssh-keygen" and then install it to the remote user's home folder with "ssh-copy-id user@remotehost" ... same syntax as an ssh connection : "ssh user@host". I recommend using MobaXterm for Windows users, as this software let's you keep your settings if you enable a local persistent home (this will be documented here too one day).
 
-### 5) Optionally (recommended), disable remote root login :
+### 3.5 Optionally (recommended), disable remote root login :
 
 Do this only if the connexion with your new user works ! 
 ```
@@ -79,8 +79,8 @@ Restart the ssh server :
 sudo systemctl restart sshd
 ```
 
-## 4) Add some swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
-### 1) Create a swapfile if you don't have a dedicated partition for that : 
+## 4. Add some swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
+### 4.1 Create a swapfile if you don't have a dedicated partition for that : 
 ```
 sudo fallocate -l 4G /swapfile
 sudo chmod 600 /swapfile
@@ -98,7 +98,7 @@ Add the swapfile in your fstab to have it enabled automatically after a reboot :
 echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 ```
 
-### 2) Tell Linux not to swap unless necessary, for example in case of RAM usage over 90% :  
+### 4.2 Tell Linux not to swap unless necessary, for example in case of RAM usage over 90% :  
 Check current settings with "sysctl -a|grep swappiness", and if needed change it (as root) :
 ```
 sysctl -a|grep swappiness
@@ -128,9 +128,9 @@ root@mine:~# echo "vm.swappiness=10" >> /etc/sysctl.conf && sysctl -p
 vm.swappiness = 10
 ```
 
-## 5) install dependencies for bitcoin : 
+## 5. install dependencies for bitcoin : 
 (All coins out there are forks of the original Bitcoin Core software stack)
-### 1) Add some components used by most of the masternode software 
+### 5.1 Add some components used by most of the masternode software 
 Unless you compile yourself, then you probably know what you do and won't need this documentation. 
 
 Always refer to the dev team install notice when possible for needed dependencies.
@@ -145,17 +145,17 @@ sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq5 
 ```
 sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq3 libminiupnpc8
 ```
-### 2) optionnal (but recommended) :
+### 5.2 optionnal (but recommended) :
 To enable usage of the QT graphacal user interfaces.
 ```
 sudo apt install qt protobuf libqrencode 
 ```
-### 3) optional : add dev libs and compilation tools
+### 5.3 optional : add dev libs and compilation tools
 Only if you want to compile things yourself ... 
 
 section to be competed ... 
 
-## 6) Add some more tools to ease administration : 
+## 6. Add some more tools to ease administration : 
 ```
 sudo apt install htop glances byobu jq -y
 ```
