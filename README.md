@@ -39,7 +39,7 @@ Of course, in the line above you replace "<i>username</i>" with whatever you wan
 ### 4) Add this new user in the "sudo" group : 
 This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
 ```
-usermod -g username -G sudo username
+usermod -a -G sudo username
 ```
 Again, in the line above you replace "<i>username</i>" with the name you just created previouly.
 
