@@ -138,21 +138,19 @@ Always refer to the dev team install notice when possible for needed dependencie
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:bitcoin/bitcoin
 sudo apt update && sudo apt upgrade
-sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
-sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq5 libminiupnpc10
-```
-#### NOTE : for old Ubuntu 14.04, replace the last line with : 
-```
-sudo apt install libssl1.0.0 libboost-all-dev libdb4.8++ libdb4.8++-dev libzmq3 libminiupnpc8
+sudo apt install libssl1.0.0 libboost-system1.58.0 libboost-filesystem1.58.0 libboost-program-options1.58.0 libboost-thread1.58.0 libdb4.8++  libzmq5 libminiupnpc10
 ```
 ### 5.2 optionnal (but recommended) :
-To enable usage of the QT graphacal user interfaces.
+To enable usage of the QT graphical user interfaces.
 ```
 sudo apt install qt protobuf libqrencode 
 ```
 ### 5.3 optional : add dev libs and compilation tools
 Only if you want to compile things yourself ... 
-
+```
+sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
+sudo apt install libssl-dev libboost-all-dev libminiupnpc-dev libzmq-dev libdb4.8++-dev 
+```
 section to be competed ... 
 
 ## 6. Add some more tools to ease administration : 
