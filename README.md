@@ -31,17 +31,17 @@ Some masternode "experts" will tell you in their documentation or Discord channe
 
 ### 3.1 Create a user : 
 ```
-useradd -m -s /bin/bash username
+useradd -m -s /bin/bash $USERNAME
 ```
-Of course, in the line above you replace "<i>username</i>" with whatever you want, like "admin", "operator", "god", "me" ... 
+Of course, in the line above you replace "<i>$USERNAME</i>" with whatever you want (without the $ sign), like "admin", "operator", "god", "me" ... 
 
-### 3.2 Add this new user in the "sudo" group : 
+### 3.2 Add this new user in the "adm", "systemd-journal" and "sudo" groups : 
 
 This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
 ```
-usermod -a -G sudo username
+usermod usermod -a -G adm,systemd-journal,sudo $USERNAME
 ```
-Again, in the line above you replace "<i>username</i>" with the name you just created previouly.
+Again, in the line above replace "<i>$USERNAME</i>" with the name you just created previouly.
 
 ### 3.3 Once this new user is created, set a password for him with the passwd command : 
 ```
@@ -50,15 +50,20 @@ passwd username
 Again, in the line above you replace "<i>username</i>" with the name you just created previouly. This command will ask you to enter the new password twice (don't worry if you see no stars or dots or whatever in the prompt as you type a password, this is normal behaviour or this command on Unix systems). An example (not to be pasted in your terminal ;p) of the above 3 steps : 
 ```
 root@vps554524:~# useradd -m -s /bin/bash tof
-root@vps554524:~# usermod -a -G sudo tof
+root@vps554524:~# usermod -a -G adm,systemd-journal,sudo tof
 root@vps554524:~# passwd tof
 Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
 root@vps554524:~# groups tof
-tof : tof sudo
+tof : tof adm sudo systemd-journal
 ```
 As you can see, nothing apears after the "password:" prompts.
+
+<B>Information on groups : </B>
+* adm - allows access to log files in /var/log without using sudo
+* systemd-jounral - allows access to the log via journalctl without using sudo
+* sudo - allows access to run commands as the super user
 
 ### 3.4 check connection with that user (connect with ssh from wherever you want)
 
@@ -70,8 +75,9 @@ Do this only if the connexion with your new user works !
 ```
 sudo vi /etc/ssh/sshd_config
 ```
---> change "PermitRootLogin" to "no" 
-
+--> change "PermitRootLogin" to "no" \
+--> change "PasswordAuthentication" to "no" \
+--> change "ChallengeResponseAuthentication" to "no" \
 (you can use nano instead of vi if you prefer)
 
 Restart the ssh server : 
@@ -79,7 +85,7 @@ Restart the ssh server :
 sudo systemctl restart sshd
 ```
 
-## 4. Add some swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
+## 4. Add swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
 ### 4.1 Create a swapfile if you don't have a dedicated partition for that : 
 ```
 sudo fallocate -l 4G /swapfile
