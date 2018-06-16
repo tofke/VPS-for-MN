@@ -39,7 +39,7 @@ Of course, in the line above you replace "<i>$USERNAME</i>" with whatever you wa
 
 This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
 ```
-usermod usermod -a -G adm,systemd-journal,sudo $USERNAME
+usermod -a -G adm,systemd-journal,sudo $USERNAME
 ```
 Again, in the line above replace "<i>$USERNAME</i>" with the name you just created previouly.
 
