@@ -2,6 +2,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
 </head>
+
 # VPS-for-MN
 Virtual Private Server setup for hosting "Dash/PIVX like" Master Nodes.
 
@@ -10,7 +11,7 @@ This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
 ## 1. The first step is to get yourself a decent server
-### An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :<br>
+### 1.1 An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :
 <a href="https://www.vultr.com/?ref=7442428"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
 * a high number of datacenters to span your nodes accros the globe
 * a high number of preinstalled images for most operating systems
@@ -19,10 +20,9 @@ I'll update it to get you information on other Linux flavours over time (RedHat 
 * the possibility to pay with BTC or BCH
 * and many more ... 
 
-### Another one i use curently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". 
-Everyone you refer gets $10 in credit. \
-<a href="https://m.do.co/c/cb682eb71eca"><img src="http://cdevue.free.fr/img/DO_Logo_Horizontal_Blue.png" width="603" height="103"></a> \
-This service provides great tools too, including : 
+### 1.2 Another one i use currently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". 
+<a href="https://m.do.co/c/cb682eb71eca"><img src="http://cdevue.free.fr/img/DO_Logo_Horizontal_Blue.png" width="603" height="103"></a><br> 
+Everyone you refer gets $10 in credit. This service provides great tools too, including : 
 * many datacenter to securely spread your servers accross the globe
 * many preinstalled images including Docker containers
 * cluster deployments
@@ -190,6 +190,8 @@ sudo apt install htop glances byobu jq -y
 * MobaXterm : the best Xwindows / SSH client (and much more) i know for Windows : https://mobaxterm.mobatek.net/download.html
 
 ### Feel free to consider a donation if this helped
+BTC : 1FMXSYsd1aDLEBAZ65c8jpoJovNusn5aQb
+
 <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
      data-address="1FMXSYsd1aDLEBAZ65c8jpoJovNusn5aQb"
      data-shared="false">
@@ -210,6 +212,7 @@ sudo apt install htop glances byobu jq -y
         <font color="red">[[error]]</font>
     </div>
 </div>
+
 Thank you for reading this guide ! 
 
 Have fun with crypto ;-)
