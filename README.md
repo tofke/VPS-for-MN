@@ -1,3 +1,7 @@
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
+</head>
 # VPS-for-MN
 Virtual Private Server setup for hosting "Dash/PIVX like" Master Nodes.
 
@@ -17,7 +21,7 @@ I'll update it to get you information on other Linux flavours over time (RedHat 
 
 ### Another one i use curently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". 
 Everyone you refer gets $10 in credit. \
-<a href="https://m.do.co/c/cb682eb71eca"><img src="https://www.digitalocean.com/assets/media/logo-a721c4a7.png" width="240" height="240"></a> \
+<a href="https://m.do.co/c/cb682eb71eca"><img src="http://cdevue.free.fr/img/DO_Logo_Horizontal_Blue.png" width="603" height="103"></a> \
 This service provides great tools too, including : 
 * many datacenter to securely spread your servers accross the globe
 * many preinstalled images including Docker containers
@@ -206,5 +210,6 @@ sudo apt install htop glances byobu jq -y
         <font color="red">[[error]]</font>
     </div>
 </div>
-Thank you for reading this guide ! \
+Thank you for reading this guide ! 
+
 Have fun with crypto ;-)
