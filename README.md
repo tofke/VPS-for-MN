@@ -6,7 +6,7 @@ This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
 ## 1. The first step is to get yourself a decent server
-An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :<br>
+### An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :<br>
 <a href="https://www.vultr.com/?ref=7442428"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
 * a high number of datacenters to span your nodes accros the globe
 * a high number of preinstalled images for most operating systems
@@ -15,9 +15,10 @@ An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">
 * the possibility to pay with BTC or BCH
 * and many more ... 
 
-Another one i use curently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". \
+### Another one i use curently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". 
+Everyone you refer gets $10 in credit. \
 <a href="https://m.do.co/c/cb682eb71eca"><img src="https://www.digitalocean.com/assets/media/logo-a721c4a7.png" width="240" height="240"></a> \
-Everyone you refer gets $10 in credit. This serive provides great tools too, including : 
+This service provides great tools too, including : 
 * many datacenter to securely spread your servers accross the globe
 * many preinstalled images including Docker containers
 * cluster deployments
