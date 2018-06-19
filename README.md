@@ -15,6 +15,18 @@ An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">
 * the possibility to pay with BTC or BCH
 * and many more ... 
 
+Another one i use curently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". \
+<a href="https://m.do.co/c/cb682eb71eca"><img src="https://www.digitalocean.com/assets/media/logo-a721c4a7.png" width="240" height="240"></a> \
+Everyone you refer gets $10 in credit. This serive provides great tools too, including : 
+* many datacenter to securely spread your servers accross the globe
+* many preinstalled images including Docker containers
+* cluster deployments
+* backups & snapshots
+* team management
+* load balancers
+* monitoring  
+* and more ...
+
 ## 2. When you connect to your new server, you should update the basic OS ! 
 Most freshly deployed preinstalled operating systems are prebuild images wich are probably not running the latest versions of software packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
 ```
@@ -172,3 +184,26 @@ sudo apt install htop glances byobu jq -y
 ### Tools for Windows (for remote administration of your VPS)
 * MobaXterm : the best Xwindows / SSH client (and much more) i know for Windows : https://mobaxterm.mobatek.net/download.html
 
+### Feel free to consider a donation if this helped
+<div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
+     data-address="1FMXSYsd1aDLEBAZ65c8jpoJovNusn5aQb"
+     data-shared="false">
+    <div class="blockchain stage-begin">
+        <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
+    </div>
+    <div class="blockchain stage-loading" style="text-align:center">
+        <img src="https://blockchain.info/Resources/loading-large.gif"/>
+    </div>
+    <div class="blockchain stage-ready">
+         <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
+         <p align="center" class="qr-code"></p>
+    </div>
+    <div class="blockchain stage-paid">
+         Donation of <b>[[value]] BTC</b> Received. Thank You.
+    </div>
+    <div class="blockchain stage-error">
+        <font color="red">[[error]]</font>
+    </div>
+</div>
+Thank you for reading this guide ! \
+Have fun with crypto ;-)
