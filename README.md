@@ -6,9 +6,7 @@ This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
 ## 1. The first step is to get yourself a decent server
-See this page on the wiki for some examples of VPS providers : 
-
-https://github.com/tofke/VPS-for-MN/wiki/Choose-a-VPS-provider
+See <a href=https://github.com/tofke/VPS-for-MN/wiki/Choose-a-VPS-provider>this Wiki page for some examples of VPS providers</a>.
 
 ## 2. When you connect to your new server, you should update the basic OS ! 
 Most freshly deployed preinstalled operating systems are prebuild images wich are probably not running the latest versions of software packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
