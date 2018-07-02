@@ -5,27 +5,8 @@ This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
 
 I'll update it to get you information on other Linux flavours over time (RedHat based for example).
 
-## 1. The first step is to get yourself a decent server
-### 1.1 An example of good VPS provider is <A href="https://www.vultr.com/?ref=7442428">VULTR</A> wich features include :
-<a href="https://www.vultr.com/?ref=7442428"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
-* a high number of datacenters to span your nodes accros the globe
-* a high number of preinstalled images for most operating systems
-* the possibility to upload your own ISO images 
-* making snapshots, backups, add storage 
-* the possibility to pay with BTC or BCH
-* and many more ... 
-
-### 1.2 Another one i use currently is <A href="https://m.do.co/c/cb682eb71eca">DigitalOcean</A> where virtual machines are called "Droplets". 
-<a href="https://m.do.co/c/cb682eb71eca"><img src="http://cdevue.free.fr/img/DO_Logo_Horizontal_Blue.png" width="603" height="103"></a><br> 
-Everyone you refer gets $10 in credit. This service provides great tools too, including : 
-* many datacenter to securely spread your servers accross the globe
-* many preinstalled images including Docker containers
-* cluster deployments
-* backups & snapshots
-* team management
-* load balancers
-* monitoring  
-* and more ...
+## 1. See this page on the wiki for some examples of VPS providers : 
+https://github.com/tofke/VPS-for-MN/wiki/Choose-a-VPS-provider
 
 ## 2. When you connect to your new server, you should update the basic OS ! 
 Most freshly deployed preinstalled operating systems are prebuild images wich are probably not running the latest versions of software packages. On a debian based system (like Ubuntu or Mint), the upgrade process is made like this (as root) : 
@@ -38,67 +19,8 @@ As the root user, just type "<b>reboot</b>", and you will be disconnected. Reboo
 reboot
 ```
 
-## 3. Secure access to your server :
-Some masternode "experts" will tell you in their documentation or Discord channel to install and run their stuff as root ... i <ai>STRONGELY</ai> discourage you to do so ! You should take a bit more precautions with your server and create a dedicated user for each task. For example, i am running +10 masternodes on a single VPS (2 Gb of RAM and 2 CPU treads). No need to "destroy the server and redo a full installation" for a simple blockchain syncronisation problem ! If they knew what the're doing, they should not just give you such dummy advises. This sounds so unprofessional to me ... needless to say i don't listen to such advices as i run many masternodes on a single VPS ... but well you do what you want, if it is easyer for you to just run an installation script. I suggest to learn basics of Linux administration however to understand what commands you type in !
-
-### 3.1 Create a user : 
-```
-useradd -m -s /bin/bash $USERNAME
-```
-Of course, in the line above you replace "<i>$USERNAME</i>" with whatever you want (without the $ sign), like "admin", "operator", "god", "me" ... 
-
-### 3.2 Add this new user in the "adm", "systemd-journal" and "sudo" groups : 
-
-This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
-```
-usermod -a -G adm,systemd-journal,sudo $USERNAME
-```
-Again, in the line above replace "<i>$USERNAME</i>" with the name you just created previouly.
-
-### 3.3 Once this new user is created, set a password for him with the passwd command : 
-```
-passwd username
-```
-Again, in the line above you replace "<i>username</i>" with the name you just created previouly. This command will ask you to enter the new password twice (don't worry if you see no stars or dots or whatever in the prompt as you type a password, this is normal behaviour or this command on Unix systems). An example (not to be pasted in your terminal ;p) of the above 3 steps : 
-```
-root@vps554524:~# useradd -m -s /bin/bash tof
-root@vps554524:~# usermod -a -G adm,systemd-journal,sudo tof
-root@vps554524:~# passwd tof
-Enter new UNIX password:
-Retype new UNIX password:
-passwd: password updated successfully
-root@vps554524:~# groups tof
-tof : tof adm sudo systemd-journal
-```
-As you can see, nothing apears after the "password:" prompts.
-
-<B>Information on groups : </B>
-* adm - allows access to log files in /var/log without using sudo
-* systemd-jounral - allows access to the log via journalctl without using sudo
-* sudo - allows access to run commands as the super user
-
-### 3.4 check connection with that user (connect with ssh from wherever you want)
-
-An even more secure option would be to enable remote connections with an ssh key ... i'll explain that later when i'll have more time to update this documentation. Basically, on a MAC or Linux at home (not on a public computer, do this only on your own), create a keypair with "ssh-keygen" and then install it to the remote user's home folder with "ssh-copy-id user@remotehost" ... same syntax as an ssh connection : "ssh user@host". I recommend using MobaXterm for Windows users, as this software let's you keep your settings if you enable a local persistent home (this will be documented here too one day).
-
-### 3.5 Optionally (recommended), disable remote root login :
-
-Do this only if the connexion with your new user works ! 
-```
-sudo vi /etc/ssh/sshd_config
-```
---> change "PermitRootLogin" to "no" \
---> change "PasswordAuthentication" to "no" \
---> change "ChallengeResponseAuthentication" to "no" \
-(you can use nano instead of vi if you prefer)
-
-Restart the ssh server : 
-```
-sudo systemctl restart sshd
-```
-
-## 4. Add swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
-### 4.1 Create a swapfile if you don't have a dedicated partition for that : 
+## 3. Add swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
+### 3.1 Create a swapfile if you don't have a dedicated partition for that : 
 ```
 sudo fallocate -l 4G /swapfile
 sudo chmod 600 /swapfile
@@ -116,7 +38,7 @@ Add the swapfile in your fstab to have it enabled automatically after a reboot :
 echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 ```
 
-### 4.2 Tell Linux not to swap unless necessary, for example in case of RAM usage over 90% :  
+### 3.2 Tell Linux not to swap unless necessary, for example in case of RAM usage over 90% :  
 Check current settings with "sysctl -a|grep swappiness", and if needed change it (as root) :
 ```
 sysctl -a|grep swappiness
@@ -144,6 +66,66 @@ This last command should answer with the changed parameter, for example :
 ```
 root@mine:~# echo "vm.swappiness=10" >> /etc/sysctl.conf && sysctl -p
 vm.swappiness = 10
+```
+
+
+## 4. Secure access to your server :
+Some masternode "experts" will tell you in their documentation or Discord channel to install and run their stuff as root ... i <ai>STRONGELY</ai> discourage you to do so ! You should take a bit more precautions with your server and create a dedicated user for each task. For example, i am running +10 masternodes on a single VPS (2 Gb of RAM and 2 CPU treads). No need to "destroy the server and redo a full installation" for a simple blockchain syncronisation problem ! If they knew what the're doing, they should not just give you such dummy advises. This sounds so unprofessional to me ... needless to say i don't listen to such advices as i run many masternodes on a single VPS ... but well you do what you want, if it is easyer for you to just run an installation script. I suggest to learn basics of Linux administration however to understand what commands you type in !
+
+### 4.1 Create a user : 
+```
+useradd -m -s /bin/bash $USERNAME
+```
+Of course, in the line above you replace "<i>$USERNAME</i>" with whatever you want (without the $ sign), like "admin", "operator", "god", "me" ... 
+
+### 4.2 Add this new user in the "adm", "systemd-journal" and "sudo" groups : 
+
+This particular system group will let this user do administrative tasks like installing software, starting services, administer the firewall rules and so on. Running a command with the word "sudo" before it is like "becomming root" in short.
+```
+usermod -a -G adm,systemd-journal,sudo $USERNAME
+```
+Again, in the line above replace "<i>$USERNAME</i>" with the name you just created previouly.
+
+### 4.3 Once this new user is created, set a password for him with the passwd command : 
+```
+passwd username
+```
+Again, in the line above you replace "<i>username</i>" with the name you just created previouly. This command will ask you to enter the new password twice (don't worry if you see no stars or dots or whatever in the prompt as you type a password, this is normal behaviour or this command on Unix systems). An example (not to be pasted in your terminal ;p) of the above 3 steps : 
+```
+root@vps554524:~# useradd -m -s /bin/bash tof
+root@vps554524:~# usermod -a -G adm,systemd-journal,sudo tof
+root@vps554524:~# passwd tof
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+root@vps554524:~# groups tof
+tof : tof adm sudo systemd-journal
+```
+As you can see, nothing apears after the "password:" prompts.
+
+<B>Information on groups : </B>
+* adm - allows access to log files in /var/log without using sudo
+* systemd-jounral - allows access to the log via journalctl without using sudo
+* sudo - allows access to run commands as the super user
+
+### 4.4 check connection with that user (connect with ssh from wherever you want)
+
+An even more secure option would be to enable remote connections with an ssh key ... i'll explain that later when i'll have more time to update this documentation. Basically, on a MAC or Linux at home (not on a public computer, do this only on your own), create a keypair with "ssh-keygen" and then install it to the remote user's home folder with "ssh-copy-id user@remotehost" ... same syntax as an ssh connection : "ssh user@host". I recommend using MobaXterm for Windows users, as this software let's you keep your settings if you enable a local persistent home (this will be documented here too one day).
+
+### 4.5 Optionally (recommended), disable remote root login :
+
+Do this only if the connexion with your new user works ! 
+```
+sudo vi /etc/ssh/sshd_config
+```
+--> change "PermitRootLogin" to "no" \
+--> change "PasswordAuthentication" to "no" \
+--> change "ChallengeResponseAuthentication" to "no" \
+(you can use nano instead of vi if you prefer)
+
+Restart the ssh server : 
+```
+sudo systemctl restart sshd
 ```
 
 ## 5. install dependencies for bitcoin : 
@@ -186,8 +168,6 @@ sudo apt install htop glances byobu jq -y
 
 ### Feel free to consider a donation if this helped
 BTC : 1FMXSYsd1aDLEBAZ65c8jpoJovNusn5aQb
-
-<img src="https://blockchain.info/Resources/loading-large.gif"/>
 
 Thank you for reading this guide ! 
 
