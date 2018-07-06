@@ -1,9 +1,9 @@
 # VPS-for-MN
-Virtual Private Server setup for hosting "Dash/PIVX like" Master Nodes.
+Virtual Private Server setup for hosting "Dash/PIVX" like Master Nodes.
 
-This step by step guide is primarly focusing on Debian/Ubuntu systems for now.
+This step by step guide is primarly focusing on Ubuntu systems for now.
 
-I'll update it to get you information on other Linux flavours over time (RedHat based for example).
+I'll update it to get you information on other Linux flavours over time (Debain and RedHat based for example).
 
 ## 1. The first step is to get yourself a decent server
 See <a href=https://github.com/tofke/VPS-for-MN/wiki/Choose-a-VPS-provider>this Wiki page for some examples of VPS providers</a>.
