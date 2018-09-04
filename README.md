@@ -22,12 +22,12 @@ reboot
 ## 3. Add swap space (virtual memory on disk like 'pagefile.sys' on Windows) : 
 ### 3.1 Create a swapfile if you don't have a dedicated partition for that : 
 ```
-sudo fallocate -l 4G /swapfile
+sudo fallocate -l 2G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
-Depending on your needs, you could add more or less swap : 4G stands for 4 GigaBytes, so if for example you just want a 2 Gb swapfile you would have typed "fallocate -l 2G /swapfile" instead.
+Depending on your needs, you could add more or less swap : 2G stands for 2 GigaBytes, so if for example you just want a 1 Gb swapfile you would have typed "fallocate -l 1G /swapfile" instead.
 ### NOTE : type this last command as root, not with "sudo" !
 Become root : 
 ```
