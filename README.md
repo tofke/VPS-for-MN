@@ -166,13 +166,6 @@ sudo apt install htop glances byobu jq -y
 ### Tools for Windows (for remote administration of your VPS)
 * MobaXterm : the best Xwindows / SSH client (and much more) i know for Windows : https://mobaxterm.mobatek.net/download.html
 
-### Feel free to consider a donation if this helped
-<b>Donation = motivation</b> :100: 
-* BTC : 1FMXSYsd1aDLEBAZ65c8jpoJovNusn5aQb
-* ETH : 0x2Bd3fb2040341eeed54fD7e5ffc73Ca49B5Bf0F5
-* LTC : ltc1q4epe4vp4n9a84ltc8jxy8j67xphntyn78gme99
-* ZEN : zncRXepm3mCcxh1jSySYUQ55HYvZrWK9FAV
-
 Thank you for reading this guide ! 
 
 Have fun with crypto ;-)
